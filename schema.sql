@@ -39,3 +39,11 @@ create table usuarios_permitidos(
   id_usuario int not null references usuarios(id),
   permissao_usuario permissoes not null
 );
+
+create table convites_pendentes(
+  id serial primary key,
+  convite_aceito boolean default false,
+  id_projeto int not null references projetos(id),
+  id_usuario int not null references usuarios(id),
+  permissao_usuario permissoes not null
+);
