@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
 
 		if (response < 1) {
 			return res.status(400).json({
-				mensagem: 'Não foi possível atualizar o do projeto no momento.'
+				mensagem: 'Não foi possível atualizar o projeto no momento.'
 			})
 		}
 
