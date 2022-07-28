@@ -1,12 +1,12 @@
-const express = require('express')
+require('dotenv').config()
 const cors = require('cors')
-const login = require('./src/routes/login')
-const register = require('./src/routes/register')
-const user = require('./src/routes/user')
+const express = require('express')
 const auth = require('./src/middlewares/auth')
 const keyAcess = require('./src/middlewares/keyAcess')
-
-require('dotenv').config()
+const loginOrRegister = require('./src/routes/loginOrRegister')
+const user = require('./src/routes/user')
+const task = require('./src/routes/task')
+const project = require('./src/routes/project')
 
 const app = express()
 
@@ -15,13 +15,14 @@ app.use(cors())
 
 app.use(keyAcess)
 
-app.use('/login', login)
-app.use('/register', register)
+app.use('/', loginOrRegister)
 
 app.use(auth)
 
 app.use('/user', user)
+app.use('/projeto', project)
+app.use('/task', task)
 
-app.listen(5000, () => {
+app.listen(process.env.PORT, () => {
 	console.log('Server running...')
 })
