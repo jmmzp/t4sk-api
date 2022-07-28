@@ -1,17 +1,13 @@
 const bcrypt = require('bcrypt')
 const knex = require('../connection/database')
-const verifyRegisterCredentials = require('../filters/verifyRegisterCredentials')
+const validateRegister = require('../validations/validateRegister')
 
 module.exports = async (req, res) => {
 	const { nome, email, senha } = req.body
 
-	const { mensagem, statusCode } = verifyRegisterCredentials(nome, email, senha)
-
-	if (statusCode >= 400) {
-		return res.status(statusCode).json({ mensagem })
-	}
-
 	try {
+		await validateRegister.validate(req.body)
+
 		const [user] = await knex('usuarios').where('email', email)
 
 		if (user)
@@ -24,7 +20,7 @@ module.exports = async (req, res) => {
 		const { rowCount } = await knex('usuarios').insert({
 			nome,
 			email,
-			senha: passwordEncrypted,
+			senha: passwordEncrypted
 		})
 
 		if (!rowCount) {
