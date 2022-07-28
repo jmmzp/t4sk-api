@@ -1,6 +1,6 @@
 const express = require('express')
-const login = require('../controllers/login')
-const register = require('../controllers/register')
+const login = require('../controllers/loginOrRegister/login')
+const register = require('../controllers/loginOrRegister/register')
 
 const routes = express()
 

@@ -1,9 +1,9 @@
 const express = require('express')
-const createProject = require('../controllers/createProject')
-const deleteProject = require('../controllers/deleteProject')
-const getProjectById = require('../controllers/getProjectById')
-const getProjects = require('../controllers/getProjects')
-const updateProject = require('../controllers/updateProject')
+const createProject = require('../controllers/project/createProject')
+const deleteProject = require('../controllers/project/deleteProject')
+const getProjectById = require('../controllers/project/getProjectById')
+const getProjects = require('../controllers/project/getProjects')
+const updateProject = require('../controllers/project/updateProject')
 
 const routes = express()
 
