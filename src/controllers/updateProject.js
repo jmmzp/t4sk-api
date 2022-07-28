@@ -6,14 +6,14 @@ module.exports = async (req, res) => {
 	const { nome, descricao, data_criacao } = req.body
 	const { id } = req.user
 
-	const { mensagem, statusCode } = verifyBodyProject(nome, descricao)
+	const { mensagem, statusCode } = 0
 
 	if (statusCode >= 400) {
 		return res.status(statusCode).json({ mensagem })
 	}
 
 	const body = bodyForSendProjects(nome, descricao, data_criacao, id)
-
+	console.log(body)
 	try {
 		const { rowCount } = await knex('projetos').insert(body)
 
