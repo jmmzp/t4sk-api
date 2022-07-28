@@ -35,7 +35,7 @@ create table tarefas(
 
 create table usuarios_permitidos(
   id serial primary key,
-  id_projeto int not null references tarefas(id),
+  id_projeto int not null references projetos(id),
   id_usuario int not null references usuarios(id),
   permissao_usuario permissoes not null
 );

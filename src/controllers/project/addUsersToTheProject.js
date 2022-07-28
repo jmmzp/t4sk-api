@@ -4,5 +4,6 @@ module.exports = async (req, res) => {
 	const { id: userId } = req.user
 	const { id: projectId } = req.params
 
-	// TODO
+	try {
+	} catch (error) {}
 }

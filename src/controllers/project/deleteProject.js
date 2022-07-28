@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
 			})
 		}
 
-		return res.status(201).json({ mensagem: 'Projeto excluido com sucesso.' })
+		return res.status(204).json({ mensagem: 'Projeto excluido com sucesso.' })
 	} catch (error) {
 		return res.status(400).json({ mensagem: error.message })
 	}
