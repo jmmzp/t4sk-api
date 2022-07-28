@@ -1,4 +1,4 @@
-const knex = require('../connection/database')
+const knex = require('../../connection/database')
 
 module.exports = async (req, res) => {
 	const { id } = req.user

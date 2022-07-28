@@ -1,6 +1,6 @@
-const validateLogin = require('../validations/validateLogin')
+const validateLogin = require('../../validations/validateLogin')
 const bcrypt = require('bcrypt')
-const knex = require('../connection/database')
+const knex = require('../../connection/database')
 const jwt = require('jsonwebtoken')
 
 module.exports = async (req, res) => {

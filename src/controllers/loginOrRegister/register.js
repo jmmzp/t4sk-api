@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
-const knex = require('../connection/database')
-const validateRegister = require('../validations/validateRegister')
+const knex = require('../../connection/database')
+const validateRegister = require('../../validations/validateRegister')
 
 module.exports = async (req, res) => {
 	const { nome, email, senha } = req.body

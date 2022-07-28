@@ -1,5 +1,5 @@
-const knex = require('../connection/database')
-const validateCreateProject = require('../validations/validateCreateProject')
+const knex = require('../../connection/database')
+const validateCreateProject = require('../../validations/validateCreateProject')
 
 module.exports = async (req, res) => {
 	const { nome, descricao, data_criacao } = req.body
