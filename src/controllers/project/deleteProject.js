@@ -1,22 +1,25 @@
+const { json } = require('express')
 const knex = require('../../connection/database')
+const permissionDeleteProject = require('../../utils/permissionDeleteProject')
 
 module.exports = async (req, res) => {
 	const { id: userId } = req.user
 	const { id: projectId } = req.params
 
 	try {
-		const response = await knex('projetos')
-			.where('id', projectId)
-			.andWhere('id_administrador', userId)
-			.del()
+		const { code, mensagem } = await permissionDeleteProject(userId, projectId)
 
-		if (response < 1) {
-			return res.status(400).json({
-				mensagem: 'Não foi possível excluir o projeto no momento.'
-			})
+		if (code >= 400) {
+			return res.status(code).json({ mensagem })
 		}
 
-		return res.status(204).json({ mensagem: 'Projeto excluido com sucesso.' })
+		await knex('usuarios_permitidos')
+			.where('id_projeto', projectId)
+			.del()
+			.debug()
+		await knex('projetos').where('id', projectId).del().debug()
+
+		return res.status(200).json({ mensagem: 'Projeto excluido com sucesso.' })
 	} catch (error) {
 		return res.status(400).json({ mensagem: error.message })
 	}
