@@ -34,6 +34,16 @@ module.exports = async (req, res) => {
 	try {
 		const [userToAdd] = await knex('usuarios').where('email', email_usuario)
 
+		const [userIsAlready] = await knex('usuarios_permitidos')
+			.where('id_projeto', projectId)
+			.andWhere('id_usuario', userToAdd.id)
+
+		if (userIsAlready) {
+			return res
+				.status(400)
+				.json({ mensagem: 'Usuario já faz parte do projeto.' })
+		}
+
 		if (!userToAdd) {
 			return res.status(404).json({ mensagem: 'Usuario não encontrado.' })
 		}
